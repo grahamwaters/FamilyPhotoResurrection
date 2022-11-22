@@ -1,5 +1,23 @@
-# FamilyPhotoResurrection
+<div align='center'>
+<h1>FamilyPhotoResurrection</h1>
 Resurrect your Family Photos with ESRGAN neural networks.
+
+**Version 1.0.0**
+
+**Created by Graham Waters**
+<div align='center'>
+<!-- add badges for the issues, release, latest updates, and stars/forks -->
+
+[![GitHub issues](https://img.shields.io/github/issues/grahamwaters/FamilyPhotoResurrection)](https://img.shields.io/github/issues/grahamwaters/FamilyPhotoResurrection)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/grahamwaters/FamilyPhotoResurrection)](https://img.shields.io/github/v/release/grahamwaters/FamilyPhotoResurrection)
+[![GitHub last commit](https://img.shields.io/github/last-commit/grahamwaters/FamilyPhotoResurrection)](https://img.shields.io/github/last-commit/grahamwaters/FamilyPhotoResurrection)
+[![GitHub stars](https://img.shields.io/github/stars/grahamwaters/FamilyPhotoResurrection)](https://img.shields.io/github/stars/grahamwaters/FamilyPhotoResurrection)
+[![GitHub forks](https://img.shields.io/github/forks/grahamwaters/FamilyPhotoResurrection)](https://img.shields.io/github/forks/grahamwaters/FamilyPhotoResurrection)
+<!-- add view count to the repo -->
+![ViewCount](https://views.whatilearened.today/views/github/grahamwaters/FamilyPhotoResurrection.svg)
+
+</div>
+</div>
 
 ## What is this?
 
