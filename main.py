@@ -20,6 +20,9 @@ import torch
 from torchvision import transforms
 # import keras
 from keras.preprocessing import image
+from tqdm import tqdm
+from alive_progress import alive_bar
+
 
 def main():
 
@@ -39,22 +42,22 @@ def main():
     # model, preprocess = clip.load("ViT-B/32", device)
 
     # download the ESRGAN model
-    print("Downloading ESRGAN model")
-    r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth", allow_redirects=True)
-    open("RRDB_ESRGAN_x4.pth", "wb").write(r.content)
+    # print("Downloading ESRGAN model")
+    # r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth", allow_redirects=True)
+    # open("RRDB_ESRGAN_x4.pth", "wb").write(r.content)
 
     # download the ESRGAN code
-    print("Downloading ESRGAN code")
-    r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip", allow_redirects=True)
+    # print("Downloading ESRGAN code")
+    # r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip", allow_redirects=True)
 
     # unzip the ESRGAN code
-    print("Unzipping ESRGAN code")
-    with zipfile.ZipFile("DIV2K_train_HR.zip", "r") as zip_ref:
-        zip_ref.extractall()
+    # print("Unzipping ESRGAN code")
+    # with zipfile.ZipFile("DIV2K_train_HR.zip", "r") as zip_ref:
+    #     zip_ref.extractall()
 
-    # move the ESRGAN code to the correct folder
-    print("Moving ESRGAN code")
-    shutil.move("DIV2K_train_HR", "esrgan")
+    # # move the ESRGAN code to the correct folder
+    # print("Moving ESRGAN code")
+    # shutil.move("DIV2K_train_HR", "esrgan")
 
 
     input_images_directory = './input_images'
@@ -70,8 +73,7 @@ def main():
     # take the input images and convert them to the correct format for the ESRGAN model
     input_images = glob.glob(input_images_directory + '/*')
 
-    from tqdm import tqdm
-    from alive_progress import alive_bar
+
 
     number_of_images = len(input_images)
 
