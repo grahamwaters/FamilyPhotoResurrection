@@ -1,0 +1,186 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "detail": "tensorflow",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow_hub",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow_hub",
+        "description": "tensorflow_hub",
+        "detail": "tensorflow_hub",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "PIL",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "PIL",
+        "description": "PIL",
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "clip",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "clip",
+        "description": "clip",
+        "detail": "clip",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "image",
+        "importPath": "keras.preprocessing",
+        "description": "keras.preprocessing",
+        "isExtraImport": true,
+        "detail": "keras.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "alive_bar",
+        "importPath": "alive_progress",
+        "description": "alive_progress",
+        "isExtraImport": true,
+        "detail": "alive_progress",
+        "documentation": {}
+    },
+    {
+        "label": "r",
+        "kind": 5,
+        "importPath": "scripts.esrgan_setup",
+        "description": "scripts.esrgan_setup",
+        "peekOfCode": "r = requests.get(\"https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth\", allow_redirects=True)\nopen(\"RRDB_ESRGAN_x4.pth\", \"wb\").write(r.content)\n# download the ESRGAN code\nprint(\"Downloading ESRGAN code\")\nr = requests.get(\"https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip\", allow_redirects=True)\nopen(\"DIV2K_train_HR.zip\", \"wb\").write(r.content)\n# unzip the ESRGAN code\nprint(\"Unzipping ESRGAN code\")\nwith zipfile.ZipFile(\"DIV2K_train_HR.zip\", \"r\") as zip_ref:\n    zip_ref.extractall()",
+        "detail": "scripts.esrgan_setup",
+        "documentation": {}
+    },
+    {
+        "label": "r",
+        "kind": 5,
+        "importPath": "scripts.esrgan_setup",
+        "description": "scripts.esrgan_setup",
+        "peekOfCode": "r = requests.get(\"https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip\", allow_redirects=True)\nopen(\"DIV2K_train_HR.zip\", \"wb\").write(r.content)\n# unzip the ESRGAN code\nprint(\"Unzipping ESRGAN code\")\nwith zipfile.ZipFile(\"DIV2K_train_HR.zip\", \"r\") as zip_ref:\n    zip_ref.extractall()\n# move the ESRGAN code to the correct folder\nprint(\"Moving ESRGAN code\")\nshutil.move(\"DIV2K_train_HR\", \"esrgan\")",
+        "detail": "scripts.esrgan_setup",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    # from ml4a import image\n    # from ml4a.models import esrgan\n    # instead of using ml4a, I will use the ESRGAN model directly via a downloaded copy, and CLIP to do the image comparison and selection. I will also use the PIL library to do the image manipulation. I will also use the os library to do the file manipulation.\n    # load the model into memory\n    print(\"Loading ESRGAN model\")\n    # load the CLIP model into memory\n    # print(\"Loading CLIP model\")\n    # model, preprocess = clip.load(\"ViT-B/32\", device)\n    # if the model is not already downloaded, download it",
+        "detail": "main",
+        "documentation": {}
+    }
+]

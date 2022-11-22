@@ -10,6 +10,7 @@ import requests
 import glob
 import shutil
 import tensorflow as tf
+import tensorflow_hub as hub
 import numpy as np
 import PIL
 from PIL import Image
@@ -33,31 +34,65 @@ def main():
 
     # load the model into memory
     print("Loading ESRGAN model")
-    esrgan = tf.keras.models.load_model("RRDB_ESRGAN_x4.pth") # this is the ESRGAN model from Keras
-    model = esrgan.load_model() # this is the model that will be used to upscale the image
-    model.eval() # set to evaluation mode which means that the model will not be trained and will not be updated with new data. This is important because we want to use the model as is, and not have it change as we use it.
 
     # load the CLIP model into memory
     # print("Loading CLIP model")
     # model, preprocess = clip.load("ViT-B/32", device)
 
-    # download the ESRGAN model
-    # print("Downloading ESRGAN model")
-    # r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth", allow_redirects=True)
-    # open("RRDB_ESRGAN_x4.pth", "wb").write(r.content)
+    # if the model is not already downloaded, download it
+    # check the models folder for the model
+    # if it is not there, download it
+    # if it is there, load it
 
-    # download the ESRGAN code
-    # print("Downloading ESRGAN code")
-    # r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip", allow_redirects=True)
+    if not os.path.exists("models"):
+        os.mkdir("models")
+    elif not os.path.exists("models/ESRGAN"):
+        os.mkdir("models/ESRGAN")
+    else:
+        print("ESRGAN model likely already downloaded")
 
-    # unzip the ESRGAN code
-    # print("Unzipping ESRGAN code")
-    # with zipfile.ZipFile("DIV2K_train_HR.zip", "r") as zip_ref:
-    #     zip_ref.extractall()
+    if not os.path.exists("models/ESRGAN/RRDB_ESRGAN_x4.pth"):
+        # download the ESRGAN model
+        print("Downloading ESRGAN model")
+        r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth", allow_redirects=True)
+        open("RRDB_ESRGAN_x4.pth", "wb").write(r.content)
 
-    # # move the ESRGAN code to the correct folder
-    # print("Moving ESRGAN code")
-    # shutil.move("DIV2K_train_HR", "esrgan")
+        # download the ESRGAN code
+        print("Downloading ESRGAN code")
+        r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip", allow_redirects=True)
+
+        # unzip the ESRGAN code
+        print("Unzipping ESRGAN code")
+        with zipfile.ZipFile("DIV2K_train_HR.zip", "r") as zip_ref:
+            zip_ref.extractall()
+
+        # move the ESRGAN code to the correct folder
+        print("Moving ESRGAN code")
+        # make a folder called 'models'
+        os.mkdir("models")
+        # move the ESRGAN model to the models folder
+        shutil.move("RRDB_ESRGAN_x4.pth", "models/RRDB_ESRGAN_x4.pth")
+
+
+    # load the model into memory (it is in esrgan/RRDB_ESRGAN_x4.pth)
+    print("Loading ESRGAN model")
+    #!model = torch.load("./models/ESRGAN/RRDB_ESRGAN_x4.pth") # I am getting a invalid load key, '<'. error here
+    # copilot: I think this is because the model is not in the correct format. I think it is a PyTorch model, and I am trying to load it into TensorFlow. I think I need to convert it to a TensorFlow model. I think I can do that with the following code:
+    # model = tf.keras.models.load_model("./models/ESRGAN/RRDB_ESRGAN_x4.pth")
+    try:
+        model = tf.keras.models.load_model("./models/ESRGAN/RRDB_ESRGAN_x4.pth", compile=False)
+    except Exception as e:
+        print(e)
+        # download the ESRGAN model
+        print("Downloading ESRGAN model")
+        r = requests.get("https://data.vision.ee.ethz.ch/cvl/DIV2K/models/RRDB_ESRGAN_x4.pth", allow_redirects=True)
+        open("./models/ESRGAN/RRDB_ESRGAN_x4.pth", "wb").write(r.content)
+
+        # try to load the model again
+        SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
+        model = hub.load(SAVED_MODEL_PATH)
+
+    model.eval() # set to evaluation mode which means that the model will not be trained and will not be updated with new data. This is important because we want to use the model as is, and not have it change as we use it.
 
 
     input_images_directory = './input_images'
