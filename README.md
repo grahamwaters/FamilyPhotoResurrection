@@ -124,3 +124,11 @@ else:
 # !python inference_realesrgan.py --model_path experiments/pretrained_models/RealESRGAN_x4plus.pth --input upload --netscale 4 --outscale 3.5 --half --face_enhance
 %cd ..
 ```
+
+If your installation was successful, you should see the following output:
+
+```bash
+Successfully built basicsr filterpy future grpcio
+Installing collected packages: yapf, tensorboard-plugin-wit, pyasn1, lmdb, addict, werkzeug, torch, tifffile, tensorboard-data-server, rsa, pyasn1-modules, protobuf, oauthlib, markdown, llvmlite, imageio, grpcio, future, cachetools, absl-py, torchvision, scikit-image, requests-oauthlib, numba, google-auth, google-auth-oauthlib, filterpy, tb-nightly, facexlib, basicsr, gfpgan
+Successfully installed absl-py-1.3.0 addict-2.4.0 basicsr-1.4.2 cachetools-5.2.0 facexlib-0.2.5 filterpy-1.4.5 future-0.18.2 gfpgan-1.3.8 google-auth-2.14.1 google-auth-oauthlib-0.4.6 grpcio-1.50.0 imageio-2.22.4 llvmlite-0.39.1 lmdb-1.3.0 markdown-3.4.1 numba-0.56.4 oauthlib-3.2.2 protobuf-3.20.3 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-oauthlib-1.3.1 rsa-4.9 scikit-image-0.19.3 tb-nightly-2.12.0a20221122 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 tifffile-2022.10.10 torch-1.13.0 torchvision-0.14.0 werkzeug-2.2.2 yapf-0.32.0
+```
