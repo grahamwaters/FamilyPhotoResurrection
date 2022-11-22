@@ -1,7 +1,7 @@
 import os
 import shutil
 import sys
-import matplotlib_inline as plt_inline
+# import matplotlib_inline as plt_inline
 import os
 import sys
 import subprocess
@@ -13,8 +13,8 @@ import tensorflow as tf
 import numpy as np
 import PIL
 from PIL import Image
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+# import matplotlib.pyplot as plt
+# import matplotlib.image as mpimg
 import clip
 import torch
 from torchvision import transforms
@@ -140,3 +140,9 @@ def main():
             output_image_names.append(output_image_name)
 
             bar()
+
+
+
+
+if __name__ == "__main__":
+    main()
