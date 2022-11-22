@@ -1,11 +1,38 @@
 [
     {
-        "label": "os",
+        "label": "functools",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "importPath": "functools",
+        "description": "functools",
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
         "documentation": {}
     },
     {
@@ -15,6 +42,68 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "OrderedDict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "os.path",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os.path",
+        "description": "os.path",
+        "detail": "os.path",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "RRDBNet_arch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "RRDBNet_arch",
+        "description": "RRDBNet_arch",
+        "detail": "RRDBNet_arch",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -45,15 +134,6 @@
         "documentation": {}
     },
     {
-        "label": "glob",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "glob",
-        "description": "glob",
-        "detail": "glob",
-        "documentation": {}
-    },
-    {
         "label": "shutil",
         "kind": 6,
         "isExtraImport": true,
@@ -81,15 +161,6 @@
         "documentation": {}
     },
     {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
         "label": "PIL",
         "kind": 6,
         "isExtraImport": true,
@@ -113,15 +184,6 @@
         "importPath": "clip",
         "description": "clip",
         "detail": "clip",
-        "documentation": {}
-    },
-    {
-        "label": "torch",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "torch",
-        "description": "torch",
-        "detail": "torch",
         "documentation": {}
     },
     {
@@ -154,6 +216,330 @@
         "description": "alive_progress",
         "isExtraImport": true,
         "detail": "alive_progress",
+        "documentation": {}
+    },
+    {
+        "label": "ResidualDenseBlock_5C",
+        "kind": 6,
+        "importPath": "notebooks.ESRGAN.RRDBNet_arch",
+        "description": "notebooks.ESRGAN.RRDBNet_arch",
+        "peekOfCode": "class ResidualDenseBlock_5C(nn.Module):\n    def __init__(self, nf=64, gc=32, bias=True):\n        super(ResidualDenseBlock_5C, self).__init__()\n        # gc: growth channel, i.e. intermediate channels\n        self.conv1 = nn.Conv2d(nf, gc, 3, 1, 1, bias=bias)\n        self.conv2 = nn.Conv2d(nf + gc, gc, 3, 1, 1, bias=bias)\n        self.conv3 = nn.Conv2d(nf + 2 * gc, gc, 3, 1, 1, bias=bias)\n        self.conv4 = nn.Conv2d(nf + 3 * gc, gc, 3, 1, 1, bias=bias)\n        self.conv5 = nn.Conv2d(nf + 4 * gc, nf, 3, 1, 1, bias=bias)\n        self.lrelu = nn.LeakyReLU(negative_slope=0.2, inplace=True)",
+        "detail": "notebooks.ESRGAN.RRDBNet_arch",
+        "documentation": {}
+    },
+    {
+        "label": "RRDB",
+        "kind": 6,
+        "importPath": "notebooks.ESRGAN.RRDBNet_arch",
+        "description": "notebooks.ESRGAN.RRDBNet_arch",
+        "peekOfCode": "class RRDB(nn.Module):\n    '''Residual in Residual Dense Block'''\n    def __init__(self, nf, gc=32):\n        super(RRDB, self).__init__()\n        self.RDB1 = ResidualDenseBlock_5C(nf, gc)\n        self.RDB2 = ResidualDenseBlock_5C(nf, gc)\n        self.RDB3 = ResidualDenseBlock_5C(nf, gc)\n    def forward(self, x):\n        out = self.RDB1(x)\n        out = self.RDB2(out)",
+        "detail": "notebooks.ESRGAN.RRDBNet_arch",
+        "documentation": {}
+    },
+    {
+        "label": "RRDBNet",
+        "kind": 6,
+        "importPath": "notebooks.ESRGAN.RRDBNet_arch",
+        "description": "notebooks.ESRGAN.RRDBNet_arch",
+        "peekOfCode": "class RRDBNet(nn.Module):\n    def __init__(self, in_nc, out_nc, nf, nb, gc=32):\n        super(RRDBNet, self).__init__()\n        RRDB_block_f = functools.partial(RRDB, nf=nf, gc=gc)\n        self.conv_first = nn.Conv2d(in_nc, nf, 3, 1, 1, bias=True)\n        self.RRDB_trunk = make_layer(RRDB_block_f, nb)\n        self.trunk_conv = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)\n        #### upsampling\n        self.upconv1 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)\n        self.upconv2 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)",
+        "detail": "notebooks.ESRGAN.RRDBNet_arch",
+        "documentation": {}
+    },
+    {
+        "label": "make_layer",
+        "kind": 2,
+        "importPath": "notebooks.ESRGAN.RRDBNet_arch",
+        "description": "notebooks.ESRGAN.RRDBNet_arch",
+        "peekOfCode": "def make_layer(block, n_layers):\n    layers = []\n    for _ in range(n_layers):\n        layers.append(block())\n    return nn.Sequential(*layers)\nclass ResidualDenseBlock_5C(nn.Module):\n    def __init__(self, nf=64, gc=32, bias=True):\n        super(ResidualDenseBlock_5C, self).__init__()\n        # gc: growth channel, i.e. intermediate channels\n        self.conv1 = nn.Conv2d(nf, gc, 3, 1, 1, bias=bias)",
+        "detail": "notebooks.ESRGAN.RRDBNet_arch",
+        "documentation": {}
+    },
+    {
+        "label": "alpha",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "alpha = float(sys.argv[1])\nnet_PSNR_path = './models/RRDB_PSNR_x4.pth'\nnet_ESRGAN_path = './models/RRDB_ESRGAN_x4.pth'\nnet_interp_path = './models/interp_{:02d}.pth'.format(int(alpha*10))\nnet_PSNR = torch.load(net_PSNR_path)\nnet_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_PSNR_path",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_PSNR_path = './models/RRDB_PSNR_x4.pth'\nnet_ESRGAN_path = './models/RRDB_ESRGAN_x4.pth'\nnet_interp_path = './models/interp_{:02d}.pth'.format(int(alpha*10))\nnet_PSNR = torch.load(net_PSNR_path)\nnet_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_ESRGAN_path",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_ESRGAN_path = './models/RRDB_ESRGAN_x4.pth'\nnet_interp_path = './models/interp_{:02d}.pth'.format(int(alpha*10))\nnet_PSNR = torch.load(net_PSNR_path)\nnet_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN\ntorch.save(net_interp, net_interp_path)",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_interp_path",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_interp_path = './models/interp_{:02d}.pth'.format(int(alpha*10))\nnet_PSNR = torch.load(net_PSNR_path)\nnet_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN\ntorch.save(net_interp, net_interp_path)",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_PSNR",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_PSNR = torch.load(net_PSNR_path)\nnet_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN\ntorch.save(net_interp, net_interp_path)",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_ESRGAN",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_ESRGAN = torch.load(net_ESRGAN_path)\nnet_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN\ntorch.save(net_interp, net_interp_path)",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "net_interp",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.net_interp",
+        "description": "notebooks.ESRGAN.net_interp",
+        "peekOfCode": "net_interp = OrderedDict()\nprint('Interpolating with alpha = ', alpha)\nfor k, v_PSNR in net_PSNR.items():\n    v_ESRGAN = net_ESRGAN[k]\n    net_interp[k] = (1 - alpha) * v_PSNR + alpha * v_ESRGAN\ntorch.save(net_interp, net_interp_path)",
+        "detail": "notebooks.ESRGAN.net_interp",
+        "documentation": {}
+    },
+    {
+        "label": "model_path",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "model_path = 'models/RRDB_ESRGAN_x4.pth'  # models/RRDB_ESRGAN_x4.pth OR models/RRDB_PSNR_x4.pth\ndevice = torch.device('cuda')  # if you want to run on CPU, change 'cuda' -> cpu\n# device = torch.device('cpu')\ntest_img_folder = 'LR/*'\nmodel = arch.RRDBNet(3, 3, 64, 23, gc=32)\nmodel.load_state_dict(torch.load(model_path), strict=True)\nmodel.eval()\nmodel = model.to(device)\nprint('Model path {:s}. \\nTesting...'.format(model_path))\nidx = 0",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "device = torch.device('cuda')  # if you want to run on CPU, change 'cuda' -> cpu\n# device = torch.device('cpu')\ntest_img_folder = 'LR/*'\nmodel = arch.RRDBNet(3, 3, 64, 23, gc=32)\nmodel.load_state_dict(torch.load(model_path), strict=True)\nmodel.eval()\nmodel = model.to(device)\nprint('Model path {:s}. \\nTesting...'.format(model_path))\nidx = 0\nfor path in glob.glob(test_img_folder):",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "test_img_folder",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "test_img_folder = 'LR/*'\nmodel = arch.RRDBNet(3, 3, 64, 23, gc=32)\nmodel.load_state_dict(torch.load(model_path), strict=True)\nmodel.eval()\nmodel = model.to(device)\nprint('Model path {:s}. \\nTesting...'.format(model_path))\nidx = 0\nfor path in glob.glob(test_img_folder):\n    idx += 1\n    base = osp.splitext(osp.basename(path))[0]",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "model = arch.RRDBNet(3, 3, 64, 23, gc=32)\nmodel.load_state_dict(torch.load(model_path), strict=True)\nmodel.eval()\nmodel = model.to(device)\nprint('Model path {:s}. \\nTesting...'.format(model_path))\nidx = 0\nfor path in glob.glob(test_img_folder):\n    idx += 1\n    base = osp.splitext(osp.basename(path))[0]\n    print(idx, base)",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "model = model.to(device)\nprint('Model path {:s}. \\nTesting...'.format(model_path))\nidx = 0\nfor path in glob.glob(test_img_folder):\n    idx += 1\n    base = osp.splitext(osp.basename(path))[0]\n    print(idx, base)\n    # read images\n    img = cv2.imread(path, cv2.IMREAD_COLOR)\n    img = img * 1.0 / 255",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "idx",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.test",
+        "description": "notebooks.ESRGAN.test",
+        "peekOfCode": "idx = 0\nfor path in glob.glob(test_img_folder):\n    idx += 1\n    base = osp.splitext(osp.basename(path))[0]\n    print(idx, base)\n    # read images\n    img = cv2.imread(path, cv2.IMREAD_COLOR)\n    img = img * 1.0 / 255\n    img = torch.from_numpy(np.transpose(img[:, :, [2, 1, 0]], (2, 0, 1))).float()\n    img_LR = img.unsqueeze(0)",
+        "detail": "notebooks.ESRGAN.test",
+        "documentation": {}
+    },
+    {
+        "label": "pretrained_net",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "pretrained_net = torch.load('./models/RRDB_ESRGAN_x4.pth')\nsave_path = './models/RRDB_ESRGAN_x4.pth'\ncrt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)\ncrt_net = crt_model.state_dict()\nload_net_clean = {}\nfor k, v in pretrained_net.items():\n    if k.startswith('module.'):\n        load_net_clean[k[7:]] = v\n    else:\n        load_net_clean[k] = v",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "save_path",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "save_path = './models/RRDB_ESRGAN_x4.pth'\ncrt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)\ncrt_net = crt_model.state_dict()\nload_net_clean = {}\nfor k, v in pretrained_net.items():\n    if k.startswith('module.'):\n        load_net_clean[k[7:]] = v\n    else:\n        load_net_clean[k] = v\npretrained_net = load_net_clean",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_model",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)\ncrt_net = crt_model.state_dict()\nload_net_clean = {}\nfor k, v in pretrained_net.items():\n    if k.startswith('module.'):\n        load_net_clean[k[7:]] = v\n    else:\n        load_net_clean[k] = v\npretrained_net = load_net_clean\nprint('###################################\\n')",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net = crt_model.state_dict()\nload_net_clean = {}\nfor k, v in pretrained_net.items():\n    if k.startswith('module.'):\n        load_net_clean[k[7:]] = v\n    else:\n        load_net_clean[k] = v\npretrained_net = load_net_clean\nprint('###################################\\n')\ntbd = []",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "load_net_clean",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "load_net_clean = {}\nfor k, v in pretrained_net.items():\n    if k.startswith('module.'):\n        load_net_clean[k[7:]] = v\n    else:\n        load_net_clean[k] = v\npretrained_net = load_net_clean\nprint('###################################\\n')\ntbd = []\nfor k, v in crt_net.items():",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "pretrained_net",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "pretrained_net = load_net_clean\nprint('###################################\\n')\ntbd = []\nfor k, v in crt_net.items():\n    tbd.append(k)\n# directly copy\nfor k, v in crt_net.items():\n    if k in pretrained_net and pretrained_net[k].size() == v.size():\n        crt_net[k] = pretrained_net[k]\n        tbd.remove(k)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "tbd",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "tbd = []\nfor k, v in crt_net.items():\n    tbd.append(k)\n# directly copy\nfor k, v in crt_net.items():\n    if k in pretrained_net and pretrained_net[k].size() == v.size():\n        crt_net[k] = pretrained_net[k]\n        tbd.remove(k)\ncrt_net['conv_first.weight'] = pretrained_net['model.0.weight']\ncrt_net['conv_first.bias'] = pretrained_net['model.0.bias']",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['conv_first.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['conv_first.weight'] = pretrained_net['model.0.weight']\ncrt_net['conv_first.bias'] = pretrained_net['model.0.bias']\nfor k in tbd.copy():\n    if 'RDB' in k:\n        ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')\n        if '.weight' in k:\n            ori_k = ori_k.replace('.weight', '.0.weight')\n        elif '.bias' in k:\n            ori_k = ori_k.replace('.bias', '.0.bias')\n        crt_net[k] = pretrained_net[ori_k]",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['conv_first.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['conv_first.bias'] = pretrained_net['model.0.bias']\nfor k in tbd.copy():\n    if 'RDB' in k:\n        ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')\n        if '.weight' in k:\n            ori_k = ori_k.replace('.weight', '.0.weight')\n        elif '.bias' in k:\n            ori_k = ori_k.replace('.bias', '.0.bias')\n        crt_net[k] = pretrained_net[ori_k]\n        tbd.remove(k)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['trunk_conv.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['trunk_conv.weight'] = pretrained_net['model.1.sub.23.weight']\ncrt_net['trunk_conv.bias'] = pretrained_net['model.1.sub.23.bias']\ncrt_net['upconv1.weight'] = pretrained_net['model.3.weight']\ncrt_net['upconv1.bias'] = pretrained_net['model.3.bias']\ncrt_net['upconv2.weight'] = pretrained_net['model.6.weight']\ncrt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['trunk_conv.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['trunk_conv.bias'] = pretrained_net['model.1.sub.23.bias']\ncrt_net['upconv1.weight'] = pretrained_net['model.3.weight']\ncrt_net['upconv1.bias'] = pretrained_net['model.3.bias']\ncrt_net['upconv2.weight'] = pretrained_net['model.6.weight']\ncrt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['upconv1.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['upconv1.weight'] = pretrained_net['model.3.weight']\ncrt_net['upconv1.bias'] = pretrained_net['model.3.bias']\ncrt_net['upconv2.weight'] = pretrained_net['model.6.weight']\ncrt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['upconv1.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['upconv1.bias'] = pretrained_net['model.3.bias']\ncrt_net['upconv2.weight'] = pretrained_net['model.6.weight']\ncrt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['upconv2.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['upconv2.weight'] = pretrained_net['model.6.weight']\ncrt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['upconv2.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['upconv2.bias'] = pretrained_net['model.6.bias']\ncrt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['HRconv.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['HRconv.weight'] = pretrained_net['model.8.weight']\ncrt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['HRconv.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['HRconv.bias'] = pretrained_net['model.8.bias']\ncrt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['conv_last.weight']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['conv_last.weight'] = pretrained_net['model.10.weight']\ncrt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
+        "documentation": {}
+    },
+    {
+        "label": "crt_net['conv_last.bias']",
+        "kind": 5,
+        "importPath": "notebooks.ESRGAN.transer_RRDB_models",
+        "description": "notebooks.ESRGAN.transer_RRDB_models",
+        "peekOfCode": "crt_net['conv_last.bias'] = pretrained_net['model.10.bias']\ntorch.save(crt_net, save_path)\nprint('Saving to ', save_path)",
+        "detail": "notebooks.ESRGAN.transer_RRDB_models",
         "documentation": {}
     },
     {
