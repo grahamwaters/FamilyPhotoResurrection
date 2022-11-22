@@ -33,6 +33,16 @@ conda activate tf
 pip install -r requirements.txt
 ```
 
+Installing `ml4a` is a bit more complicated. You can find the instructions [here]() or follow the instructions below.
+
+```bash
+git clone https://github.com/ml4a/ml4a.git
+cd ml4a
+pip install -r requirements.txt
+pip install -e .
+```
+
+
 
 ## How does it work?
 
